@@ -16,6 +16,6 @@ class StartView:
         self.bot.send_message(chat_id=chat_id, text=self.start_message, reply_markup=reply_markup)
 
     def send_main_menu(self, chat_id):
-        reply_keyboard = [[Keyboard.search_book_by_title]]
+        reply_keyboard = [[Keyboard.search_book]]
         reply_markup = ReplyKeyboardMarkup(keyboard=reply_keyboard)
         self.bot.send_message(chat_id=chat_id, text=self.main_menu_title, reply_markup=reply_markup)
