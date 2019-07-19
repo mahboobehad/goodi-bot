@@ -3,4 +3,5 @@ from enum import Enum
 
 
 class BotStates(Enum):
-    pass
+    BOOK_INFO = 0
+    NEXT_SEARCH_RESULT = 1
