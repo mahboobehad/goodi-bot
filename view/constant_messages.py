@@ -7,10 +7,16 @@ class Keyboard:
 class CommonStrings:
     new_line = "\n"
     double_new_line = "\n\n"
+
+
 ratings = {
-    1:"⭐",
-    2:"⭐⭐",
-    3:"⭐⭐⭐",
-    4:"⭐⭐⭐⭐",
-    5:"⭐⭐⭐⭐⭐"
+    1: "⭐",
+    2: "⭐⭐",
+    3: "⭐⭐⭐",
+    4: "⭐⭐⭐⭐",
+    5: "⭐⭐⭐⭐⭐"
 }
+
+
+class CommonRegexes:
+    numbers = r'([\d]+|[۰...۹]+)'

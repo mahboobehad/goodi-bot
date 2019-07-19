@@ -1,4 +1,6 @@
 # In the name of God
 import logging
 
-logger = logging.getLogger()
+
+def get_logger():
+    return logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG)
