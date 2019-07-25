@@ -2,7 +2,8 @@
 from typing import List
 
 from betterreads.book import GoodreadsBook
-from telegram import Bot, ReplyKeyboardMarkup, parsemode
+from telegram import Bot, ReplyKeyboardMarkup, ParseMode
+import html2markdown
 
 from config import Config
 from view.constant_messages import Keyboard, CommonStrings, ratings
@@ -37,7 +38,7 @@ class BookView:
                                             rating=ratings[int(book.average_rating)],
                                             title=book.title,
                                             book_index=index + 1,
-                                            author="-".join(str(author) for author in book.authors)+".")
+                                            author="-".join(str(author) for author in book.authors) + ".")
             index += 1
 
         book_btns = []
@@ -47,7 +48,7 @@ class BookView:
         book_btns.append([Keyboard.main_menu])
         reply_markup = ReplyKeyboardMarkup(keyboard=book_btns)
         self.bot.send_message(chat_id=chat_id, text=text, reply_markup=reply_markup,
-                              parse_mode=parsemode.ParseMode.MARKDOWN)
+                              parse_mode=ParseMode.MARKDOWN)
 
     def send_search_failed(self, chat_id):
         keyboard = [[Keyboard.main_menu]]
@@ -55,7 +56,8 @@ class BookView:
         self.bot.send_message(chat_id=chat_id, text=self.not_found, reply_markup=reply_markup)
 
     def send_book_detail(self, chat_id, book: GoodreadsBook):
-        text = self.book_caption.format(book.title, ratings[int(book.average_rating)], book.description)
+        text = html2markdown.convert(
+            self.book_caption.format(book.title, ratings[int(book.average_rating)], book.description))
         keyboard = [[Keyboard.main_menu]]
         reply_markup = ReplyKeyboardMarkup(keyboard=keyboard)
-        self.bot.send_message(chat_id=chat_id, text=text, reply_markup=reply_markup)
+        self.bot.send_message(chat_id=chat_id, text=text, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
