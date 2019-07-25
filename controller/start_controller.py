@@ -6,6 +6,7 @@ from utils import get_logger
 from view.constant_messages import Keyboard
 from view.start_view import StartView
 
+
 class StartController:
     def __init__(self, dispatcher: Dispatcher, bot: Bot):
         self.view = StartView(bot)
@@ -18,22 +19,12 @@ class StartController:
             fallbacks={}
         )
         self.dispatcher.add_handler(self.conversation_handler)
-        self.user_data = {}
         self.logger = get_logger()
 
-    def add_user_data(self, user_id, key, value):
-        if not user_id in self.user_data.keys():
-            self.user_data[user_id] = {key: value}
-        else:
-            self.user_data[user_id].update({key: value})
-
-    def get_user_data(self, user_id, key):
-        return self.user_data.get(user_id, None).get(key, None)
-
-    def start(self,bot, update: Update):
+    def start(self, bot, update: Update):
         chat_id = update.effective_chat.id
         self.view.send_start_message(chat_id)
 
-    def main_menu(self,bot, update: Update):
+    def main_menu(self, bot, update: Update):
         chat_id = update.effective_chat.id
         self.view.send_main_menu(chat_id)
