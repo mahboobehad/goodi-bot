@@ -1,3 +1,4 @@
 python-telegram-bot==11.1.0
 betterreads==0.4.2
 html2markdown==0.1.7
+loguru

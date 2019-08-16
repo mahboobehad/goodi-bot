@@ -25,13 +25,14 @@ class BookController(StartController):
                                                        pass_user_data=True)]
                     },
             fallbacks={}, allow_reentry=True)
+
         self.dispatcher.add_handler(self.conversation_handler)
         self.goodreads_client = goodreads_client
 
     def search_book(self, bot, update: Update, user_data):
         chat_id = update.effective_chat.id
-        self.view.send_search_message(chat_id)
         user_data['index'] = None
+        self.view.send_search_message(chat_id)
         return BotStates.BOOK_INFO
 
     def get_book_info(self, bot, update: Update, user_data):

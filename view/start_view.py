@@ -7,7 +7,8 @@ from view.constant_messages import Keyboard
 class StartView:
     start_message = "سلام! من یک بات متصل به goodreads هستم. فعلا می‌تونی با من در بین کتاب‌ها جستجو کنی."
     main_menu_title = "یکی از گزینه‌های زیر رو انتخاب کن!"
-    def __init__(self, bot:Bot):
+
+    def __init__(self, bot: Bot):
         self.bot = bot
 
     def send_start_message(self, chat_id):
